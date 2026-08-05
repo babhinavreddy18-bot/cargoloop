@@ -1,5 +1,5 @@
 import { Router, Request, Response } from 'express';
-import { verifyDriverDocument, matchReturnLoads } from '../services/geminiService.js';
+import { verifyDriverDocument, matchReturnLoads, getFutureTruckPredictions } from '../services/geminiService.js';
 
 const router = Router();
 
@@ -33,4 +33,15 @@ router.post('/match-loads', async (req: Request, res: Response) => {
   }
 });
 
+// 3. AI Future Truck Availability Endpoint
+router.get('/future-predictions', async (_req: Request, res: Response) => {
+  try {
+    const predictions = await getFutureTruckPredictions();
+    return res.json(predictions);
+  } catch (error: any) {
+    return res.status(500).json({ error: 'Failed to fetch AI future truck predictions.', details: error?.message });
+  }
+});
+
 export default router;
+

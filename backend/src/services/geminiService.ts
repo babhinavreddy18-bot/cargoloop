@@ -156,3 +156,127 @@ Return a valid JSON array of objects without markdown formatting:
     };
   }).sort((a, b) => b.match_score - a.match_score);
 }
+
+export async function getFutureTruckPredictions(): Promise<any[]> {
+  if (genAI) {
+    try {
+      let model;
+      try {
+        model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash' });
+      } catch {
+        model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
+      }
+
+      const prompt = `Predict future empty truck availability for advance reservations in 1h, 6h, 24h, and 3d time horizons based on freight traffic patterns and delivery completions.
+Return a valid JSON array of 4 prediction items matching this schema without markdown formatting:
+[
+  {
+    "id": "pred-100",
+    "truck_id": "trk-101",
+    "truck_number": "MH-12-PQ-9821",
+    "truck_type": "32ft Multi-Axle Container",
+    "driver_name": "Rajesh Kumar",
+    "trust_score": 96,
+    "is_verified": true,
+    "current_location_city": "Navi Mumbai",
+    "target_destination_city": "Pune MIDC",
+    "predicted_available_at": "${new Date(Date.now() + 3600000 * 2).toISOString()}",
+    "time_horizon": "1h",
+    "match_probability": 96,
+    "remaining_km": 35,
+    "current_delivery_status": "Unloading cargo at JNPT Terminal",
+    "expected_freight_cost": 32000,
+    "dest_lat": 18.5204,
+    "dest_lng": 73.8567
+  }
+]`;
+
+      const response = await model.generateContent(prompt);
+      const text = response.response.text().replace(/```json|```/g, '').trim();
+      return JSON.parse(text);
+    } catch (err) {
+      console.warn('Gemini Future Truck prediction error on backend, using seed predictions:', err);
+    }
+  }
+
+  // Fallback seed prediction items for 1h, 6h, 24h, 3d
+  return [
+    {
+      id: 'pred-101',
+      truck_id: 'trk-1',
+      truck_number: 'MH-12-PQ-9821',
+      truck_type: '32ft Multi-Axle Container',
+      driver_name: 'Rajesh Kumar',
+      trust_score: 96,
+      is_verified: true,
+      current_location_city: 'Navi Mumbai',
+      target_destination_city: 'Pune MIDC',
+      predicted_available_at: new Date(Date.now() + 3600000 * 1.5).toISOString(),
+      time_horizon: '1h',
+      match_probability: 96,
+      remaining_km: 35,
+      current_delivery_status: 'Unloading cargo at JNPT Terminal',
+      expected_freight_cost: 32000,
+      dest_lat: 18.5204,
+      dest_lng: 73.8567
+    },
+    {
+      id: 'pred-102',
+      truck_id: 'trk-2',
+      truck_number: 'KA-04-AB-3342',
+      truck_type: 'Eicher 14ft Open Body',
+      driver_name: 'Suresh Patil',
+      trust_score: 91,
+      is_verified: true,
+      current_location_city: 'Tumakuru',
+      target_destination_city: 'Peenya Industrial Area, Bengaluru',
+      predicted_available_at: new Date(Date.now() + 3600000 * 5.5).toISOString(),
+      time_horizon: '6h',
+      match_probability: 92,
+      remaining_km: 68,
+      current_delivery_status: 'In Transit - Passing Dobbaspet Toll',
+      expected_freight_cost: 18500,
+      dest_lat: 13.0285,
+      dest_lng: 77.5197
+    },
+    {
+      id: 'pred-103',
+      truck_id: 'trk-3',
+      truck_number: 'HR-55-XY-7712',
+      truck_type: '40ft High Cube Trailer',
+      driver_name: 'Vikram Singh',
+      trust_score: 88,
+      is_verified: true,
+      current_location_city: 'Manesar',
+      target_destination_city: 'Bhiwadi Industrial Estate',
+      predicted_available_at: new Date(Date.now() + 3600000 * 22).toISOString(),
+      time_horizon: '24h',
+      match_probability: 89,
+      remaining_km: 140,
+      current_delivery_status: 'Scheduled Unloading Tomorrow Morning',
+      expected_freight_cost: 45000,
+      dest_lat: 28.2096,
+      dest_lng: 76.8336
+    },
+    {
+      id: 'pred-104',
+      truck_id: 'trk-4',
+      truck_number: 'TN-09-CD-4510',
+      truck_type: '20ft Closed Container',
+      driver_name: 'Karthik Raja',
+      trust_score: 94,
+      is_verified: true,
+      current_location_city: 'Sriperumbudur',
+      target_destination_city: 'Hosur Sipcot',
+      predicted_available_at: new Date(Date.now() + 3600000 * 68).toISOString(),
+      time_horizon: '3d',
+      match_probability: 85,
+      remaining_km: 280,
+      current_delivery_status: 'Dispatched from Chennai Port Terminal',
+      expected_freight_cost: 26500,
+      dest_lat: 12.7409,
+      dest_lng: 77.8253
+    }
+  ];
+}
+
