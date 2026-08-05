@@ -1,109 +1,96 @@
-# 🚛 CargoLoop – AI-Powered Return Load Optimization SaaS Platform
+# 🚛 CargoLoop – Return Load Optimization SaaS Platform
 
-CargoLoop (BackHaul AI) is a production-ready full-stack SaaS web application designed to solve the **Truck Empty Return Problem** in freight logistics. 
+CargoLoop (BackHaul AI) is a production-ready full-stack SaaS web application designed to solve the **Truck Empty Return Problem** in freight logistics using Gemini AI and Supabase.
 
-By leveraging **Gemini AI**, CargoLoop automatically matches empty trucks with nearby return loads, predicts future truck availability for advance reservations, and conducts instant AI document verification for drivers and fleet owners.
-
----
-
-## ⚡ Tech Stack
-
-- **Frontend**: React 19, TypeScript, Vite
-- **Styling & Motion**: Tailwind CSS, Framer Motion, Custom Glassmorphism UI
-- **Routing & Forms**: React Router DOM v7, React Hook Form
-- **Mapping & Geolocation**: Leaflet & OpenStreetMap tiles with animated truck SVG overlays
-- **Database & Auth**: Supabase (PostgreSQL, Auth, Realtime)
-- **Artificial Intelligence**: Google Gemini 2.5 Flash API (`@google/generative-ai`)
-- **Data Visualization**: Recharts
+This repository is structured into distinct **Frontend** and **Backend** directories.
 
 ---
 
-## 👥 User Roles
+## 📁 Project Directory Structure
 
-1. **Driver**:
-   - Register trucks (Type, Capacity, GPS Location, Destination, Availability)
-   - Upload driver & vehicle documents (License, RC, Insurance, PUC, Truck Photo, Aadhaar)
-   - Real-time Gemini AI document authenticity verification & Trust Score calculation
-   - View recommended return loads with profit & CO₂ savings breakdown
-
-2. **Shipper**:
-   - Post cargo shipments (Pickup, Drop, Cargo Material, Weight, Price, Loading Time)
-   - **⭐ AI Future Truck Availability**: View predicted incoming trucks and reserve trucks in advance before arrival
-   - View live match probabilities, driver verification badges, and estimated arrival times
-
-3. **Fleet Owner**:
-   - Enterprise fleet metrics (Total Trucks, Active vs Empty Trucks, Revenue, Match Rate, Fuel & CO₂ Saved)
-   - Gemini AI Strategic Business Insights
-   - Future truck availability timeline (1h, 6h, 24h, 3d horizons)
-
-4. **Admin**:
-   - Governance dashboard for managing users, trucks, shipments, and bookings
-   - Automated driver document verification audit queue
-   - Recharts visual analytics on match volumes, revenue, and cumulative carbon reduction
-
----
-
-## 🗄️ Database Schema (`supabase/schema.sql`)
-
-The database consists of 7 normalized PostgreSQL tables:
-- `users`: User profiles, roles, trust scores, and verification status.
-- `trucks`: Vehicle specs, capacity, live GPS coordinates, and availability status.
-- `shipments`: Cargo postings with pickup/drop locations, cargo weight, and offered price.
-- `bookings`: Agreed freight bookings, advance reservations, and ETA tracking.
-- `driver_documents`: Document uploads with Gemini AI verification results & confidence scores.
-- `ai_matches`: Match scores, profit margins, fuel costs, extra detour distances, and carbon savings.
-- `future_truck_predictions`: Predicted incoming trucks, time horizons, match probabilities, and remaining km.
+```
+CargoLoop/
+├── frontend/                 # React + TypeScript + Tailwind CSS + Vite Web Client
+│   ├── src/                  # Components, Pages, Context, Types, Leaflet Map
+│   ├── index.html            # Web Entrypoint
+│   ├── package.json          # Frontend Dependencies & Scripts
+│   ├── vite.config.ts        # Vite Bundler Config
+│   ├── vercel.json           # Vercel SPA Routing Configuration
+│   └── .env                  # Local Environment Variables
+│
+├── backend/                  # Express Node.js TypeScript API & Supabase Service
+│   ├── src/                  # Express App, Gemini AI Services, REST Routes
+│   │   ├── server.ts         # Main Entrypoint (Port 5000)
+│   │   ├── services/         # Gemini AI OCR, Matching & Predictions
+│   │   └── routes/           # REST API Endpoints (/api/ai/verify-document, etc.)
+│   ├── supabase/
+│   │   └── schema.sql        # Database Schema & RLS Security Policies
+│   ├── package.json          # Backend Dependencies
+│   └── .env                  # Backend API Keys & Credentials
+│
+└── README.md                 # Project Master Documentation
+```
 
 ---
 
 ## 🚀 Quick Start Guide
 
-### 1. Installation
+### 1. Backend Setup
 ```bash
-# Clone repository
-git clone https://github.com/your-username/CargoLoop.git
-cd CargoLoop
-
-# Install dependencies
+cd backend
 npm install
+npm run dev
 ```
+The Express Node.js API server will start on `http://localhost:5000`.
 
-### 2. Environment Setup
-Copy `.env.example` to `.env`:
+### 2. Frontend Setup
+In a new terminal window:
 ```bash
-cp .env.example .env
+cd frontend
+npm install
+npm run dev
 ```
+The React Vite frontend client will start on `http://localhost:3000`.
 
-Add your Gemini API key and Supabase credentials:
+---
+
+## 🔑 Environment Variables Setup
+
+### Frontend (`frontend/.env`)
 ```env
 VITE_GEMINI_API_KEY=your_gemini_api_key_here
 VITE_SUPABASE_URL=https://your-supabase-project.supabase.co
 VITE_SUPABASE_ANON_KEY=your_supabase_anon_key_here
 ```
-*(Note: CargoLoop features built-in high-fidelity AI and database simulation fallback modes out-of-the-box if keys are omitted).*
 
-### 3. Run Development Server
-```bash
-npm run dev
-```
-
-### 4. Build for Production
-```bash
-npm run build
+### Backend (`backend/.env`)
+```env
+PORT=5000
+NODE_ENV=development
+GEMINI_API_KEY=your_gemini_api_key_here
+SUPABASE_URL=https://your-supabase-project.supabase.co
+SUPABASE_ANON_KEY=your_supabase_anon_key_here
 ```
 
 ---
 
-## 🌐 Deployment on Vercel
-
-1. Push your repository to GitHub.
-2. Import the repository in [Vercel](https://vercel.com).
-3. Set Framework Preset to **Vite**.
-4. Configure Environment Variables (`VITE_GEMINI_API_KEY`, `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY`).
-5. Click **Deploy**.
+## 🗄️ Database Setup (`backend/supabase/schema.sql`)
+1. Log in to your [Supabase Dashboard](https://supabase.com).
+2. Go to **SQL Editor**.
+3. Copy & paste the contents of `backend/supabase/schema.sql` and click **Run**.
 
 ---
 
-## 📄 License
-MIT License. Built for CargoLoop.
-# cargoloop
+## 🌐 Deployment Instructions
+
+### Deploy Frontend (Vercel)
+1. Push your code to GitHub.
+2. In Vercel, import the `frontend/` folder as your project root.
+3. Select **Vite** framework preset and add your environment variables (`VITE_GEMINI_API_KEY`, `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY`).
+4. Deploy!
+
+### Deploy Backend (Render / Railway / Render / Vercel Serverless)
+1. In Render / Railway / Fly.io, create a Node.js web service pointing to the `backend/` directory.
+2. Set Build Command: `npm run build`
+3. Set Start Command: `npm start`
+4. Set environment variables (`GEMINI_API_KEY`, `SUPABASE_URL`, `SUPABASE_ANON_KEY`).
