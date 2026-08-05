@@ -141,3 +141,4 @@ FRONTEND_URL=http://localhost:3000
 2. Build Command: `npm run build`
 3. Start Command: `npm start`
 4. Add environment variables (`PORT`, `GEMINI_API_KEY`, `SUPABASE_URL`, `SUPABASE_ANON_KEY`, `FRONTEND_URL`).
+# cargoloop2
