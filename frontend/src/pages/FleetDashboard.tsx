@@ -13,15 +13,15 @@ export const FleetDashboard: React.FC = () => {
   return (
     <div className="space-y-6">
       {/* Header Banner */}
-      <GlassCard glow className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <GlassCard glow className="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-white border-slate-200 shadow-md">
         <div>
           <div className="flex items-center space-x-2">
-            <span className="px-2.5 py-0.5 rounded-full bg-purple-500/10 text-purple-400 font-bold text-xs border border-purple-500/30">
+            <span className="px-2.5 py-0.5 rounded-full bg-indigo-50 text-indigo-800 font-extrabold text-xs border border-indigo-200">
               Fleet Enterprise Control
             </span>
-            <h1 className="text-2xl font-black text-white">Welcome, {currentUser.company_name || currentUser.name}!</h1>
+            <h1 className="text-2xl font-black text-slate-900">Welcome, {currentUser.company_name || currentUser.name}!</h1>
           </div>
-          <p className="text-xs text-slate-400 mt-1">
+          <p className="text-xs text-slate-500 mt-1 font-medium">
             Real-time fleet telemetry, backhaul match rate optimization, fuel conservation, and AI strategic forecasting.
           </p>
         </div>
@@ -37,12 +37,12 @@ export const FleetDashboard: React.FC = () => {
       <AvailabilityTimeline />
 
       {/* Interactive Fleet Telemetry Map */}
-      <GlassCard>
+      <GlassCard className="bg-white border-slate-200 shadow-sm">
         <div className="flex items-center justify-between mb-4">
-          <h3 className="text-base font-bold text-white flex items-center">
-            <MapPin className="w-4 h-4 text-emerald-400 mr-2" /> Live Fleet Telemetry & Route Optimization Map
+          <h3 className="text-base font-extrabold text-slate-900 flex items-center">
+            <MapPin className="w-4 h-4 text-emerald-600 mr-2" /> Live Fleet Telemetry & Route Optimization Map
           </h3>
-          <span className="text-xs text-slate-400">45 Active Vehicles GPS Synced</span>
+          <span className="text-xs text-slate-500 font-semibold">45 Active Vehicles GPS Synced</span>
         </div>
         <InteractiveMap trucks={trucks} shipments={shipments} predictions={predictions} height="480px" />
       </GlassCard>

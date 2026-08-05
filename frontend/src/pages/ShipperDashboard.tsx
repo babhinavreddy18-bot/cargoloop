@@ -16,15 +16,15 @@ export const ShipperDashboard: React.FC = () => {
   return (
     <div className="space-y-6">
       {/* Header Banner */}
-      <GlassCard glow className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <GlassCard glow className="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-white border-slate-200 shadow-md">
         <div>
           <div className="flex items-center space-x-2">
-            <span className="px-2.5 py-0.5 rounded-full bg-cyan-500/10 text-cyan-400 font-bold text-xs border border-cyan-500/30">
+            <span className="px-2.5 py-0.5 rounded-full bg-sky-50 text-sky-800 font-extrabold text-xs border border-sky-200">
               Shipper Command Hub
             </span>
-            <h1 className="text-2xl font-black text-white">Welcome, {currentUser.company_name || currentUser.name}!</h1>
+            <h1 className="text-2xl font-black text-slate-900">Welcome, {currentUser.company_name || currentUser.name}!</h1>
           </div>
-          <p className="text-xs text-slate-400 mt-1">
+          <p className="text-xs text-slate-500 mt-1 font-medium">
             Book empty return trucks instantly or reserve incoming trucks in advance using Gemini AI predictions.
           </p>
         </div>
@@ -32,7 +32,7 @@ export const ShipperDashboard: React.FC = () => {
         <div className="flex items-center space-x-3">
           <button
             onClick={() => setIsPostModalOpen(true)}
-            className="px-4 py-2.5 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-extrabold text-xs flex items-center space-x-1.5 shadow-lg shadow-cyan-500/20 transition-all"
+            className="px-4 py-2.5 rounded-xl bg-sky-600 hover:bg-sky-700 text-white font-extrabold text-xs flex items-center space-x-1.5 shadow-md shadow-sky-600/20 transition-all"
           >
             <Plus className="w-4 h-4" />
             <span>Post New Cargo Shipment</span>
@@ -69,16 +69,16 @@ export const ShipperDashboard: React.FC = () => {
       </div>
 
       {/* Tabs */}
-      <div className="flex items-center space-x-2 border-b border-slate-800 pb-3">
+      <div className="flex items-center space-x-2 border-b border-slate-200 pb-3">
         <button
           onClick={() => setActiveTab('future')}
           className={`px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center space-x-2 ${
             activeTab === 'future'
-              ? 'bg-purple-500/20 text-purple-400 border border-purple-500/40'
-              : 'text-slate-400 hover:text-white'
+              ? 'bg-indigo-50 text-indigo-800 border border-indigo-200 shadow-xs'
+              : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
           }`}
         >
-          <Sparkles className="w-4 h-4" />
+          <Sparkles className="w-4 h-4 text-indigo-600" />
           <span>⭐ AI Future Availability & Advance Reservations</span>
         </button>
 
@@ -86,11 +86,11 @@ export const ShipperDashboard: React.FC = () => {
           onClick={() => setActiveTab('active')}
           className={`px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center space-x-2 ${
             activeTab === 'active'
-              ? 'bg-cyan-500/20 text-cyan-400 border border-cyan-500/40'
-              : 'text-slate-400 hover:text-white'
+              ? 'bg-sky-50 text-sky-800 border border-sky-200 shadow-xs'
+              : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
           }`}
         >
-          <Package className="w-4 h-4" />
+          <Package className="w-4 h-4 text-sky-600" />
           <span>Posted Shipments</span>
         </button>
 
@@ -98,11 +98,11 @@ export const ShipperDashboard: React.FC = () => {
           onClick={() => setActiveTab('map')}
           className={`px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center space-x-2 ${
             activeTab === 'map'
-              ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/40'
-              : 'text-slate-400 hover:text-white'
+              ? 'bg-emerald-50 text-emerald-800 border border-emerald-200 shadow-xs'
+              : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
           }`}
         >
-          <MapPin className="w-4 h-4" />
+          <MapPin className="w-4 h-4 text-emerald-600" />
           <span>Freight Logistics Map</span>
         </button>
       </div>

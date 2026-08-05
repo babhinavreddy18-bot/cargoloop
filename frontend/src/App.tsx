@@ -37,7 +37,7 @@ const AppContent: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col justify-between bg-[#0B0F19]">
+    <div className="min-h-screen flex flex-col justify-between bg-slate-50 text-slate-900">
       <Navbar onNavigateToDashboard={() => navigate('/dashboard')} />
 
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 lg:px-8 py-6">

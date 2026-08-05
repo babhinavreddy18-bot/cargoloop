@@ -59,18 +59,18 @@ export const DocumentUploader: React.FC = () => {
 
   return (
     <div className="space-y-6">
-      <GlassCard glow>
+      <GlassCard glow className="bg-white border-slate-200 shadow-md">
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center space-x-2">
-            <div className="p-2 rounded-xl bg-purple-500/10 border border-purple-500/30 text-purple-400">
-              <Sparkles className="w-5 h-5" />
+            <div className="p-2 rounded-xl bg-indigo-50 border border-indigo-200 text-indigo-700">
+              <Sparkles className="w-5 h-5 text-indigo-600" />
             </div>
             <div>
-              <h3 className="text-lg font-bold text-white">Gemini AI Document Verification Engine</h3>
-              <p className="text-xs text-slate-400">Upload documents for instant authenticity, clarity, and expiration check.</p>
+              <h3 className="text-lg font-black text-slate-900">Gemini AI Document Verification Engine</h3>
+              <p className="text-xs text-slate-500 font-medium">Upload documents for instant authenticity, clarity, and expiration check.</p>
             </div>
           </div>
-          <span className="text-xs font-semibold px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
+          <span className="text-xs font-extrabold px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 shadow-xs">
             Trust Score: {currentUser.trust_score}/100
           </span>
         </div>
@@ -86,20 +86,20 @@ export const DocumentUploader: React.FC = () => {
                 onClick={() => setSelectedDocType(item.type)}
                 className={`p-3.5 rounded-xl border transition-all cursor-pointer flex items-center justify-between ${
                   isSel
-                    ? 'bg-slate-800 border-purple-500/50 shadow-md shadow-purple-500/10'
-                    : 'bg-slate-950/40 border-slate-800 hover:border-slate-700'
+                    ? 'bg-indigo-50/70 border-indigo-300 shadow-xs'
+                    : 'bg-slate-50 border-slate-200 hover:border-slate-300'
                 }`}
               >
                 <div>
-                  <h4 className="text-xs font-bold text-slate-200">{item.label}</h4>
-                  <p className="text-[10px] text-slate-400">{item.desc}</p>
+                  <h4 className="text-xs font-bold text-slate-900">{item.label}</h4>
+                  <p className="text-[10px] text-slate-500 font-medium">{item.desc}</p>
                 </div>
                 {existing ? (
-                  <span className="flex items-center text-[10px] font-bold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/30">
-                    <CheckCircle className="w-3 h-3 mr-1" /> Verified
+                  <span className="flex items-center text-[10px] font-extrabold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
+                    <CheckCircle className="w-3 h-3 mr-1 text-emerald-600" /> Verified
                   </span>
                 ) : (
-                  <span className="text-[10px] text-slate-500">Not Uploaded</span>
+                  <span className="text-[10px] text-slate-400 font-medium">Not Uploaded</span>
                 )}
               </div>
             );
@@ -107,7 +107,7 @@ export const DocumentUploader: React.FC = () => {
         </div>
 
         {/* Upload Zone */}
-        <div className="relative border-2 border-dashed border-slate-700 hover:border-purple-500/60 rounded-2xl p-8 text-center bg-slate-950/50 transition-all">
+        <div className="relative border-2 border-dashed border-slate-300 hover:border-indigo-500 rounded-2xl p-8 text-center bg-slate-50 transition-all">
           <input
             type="file"
             accept="image/*,.pdf"
@@ -118,21 +118,21 @@ export const DocumentUploader: React.FC = () => {
           <div className="flex flex-col items-center justify-center space-y-3">
             {isUploading ? (
               <>
-                <Loader2 className="w-10 h-10 text-purple-400 animate-spin" />
-                <p className="text-sm font-semibold text-purple-300 animate-pulse">
+                <Loader2 className="w-10 h-10 text-indigo-600 animate-spin" />
+                <p className="text-sm font-extrabold text-indigo-800 animate-pulse">
                   Gemini AI Analyzing Document Authenticity & Expiry...
                 </p>
               </>
             ) : (
               <>
-                <div className="p-4 rounded-full bg-purple-500/10 text-purple-400 border border-purple-500/30">
-                  <Upload className="w-8 h-8" />
+                <div className="p-4 rounded-full bg-indigo-50 text-indigo-700 border border-indigo-200 shadow-xs">
+                  <Upload className="w-8 h-8 text-indigo-600" />
                 </div>
                 <div>
-                  <p className="text-sm font-bold text-slate-200">
+                  <p className="text-sm font-extrabold text-slate-900">
                     Click or Drag file to upload {selectedDocType.toUpperCase()}
                   </p>
-                  <p className="text-xs text-slate-500 mt-1">Supports JPG, PNG, PDF (Max 10MB)</p>
+                  <p className="text-xs text-slate-500 mt-1 font-medium">Supports JPG, PNG, PDF (Max 10MB)</p>
                 </div>
               </>
             )}
@@ -141,27 +141,27 @@ export const DocumentUploader: React.FC = () => {
 
         {/* Latest AI Analysis Card */}
         {latestAnalysis && (
-          <div className="mt-6 p-4 rounded-xl bg-slate-900 border border-purple-500/30 text-xs space-y-3">
+          <div className="mt-6 p-4 rounded-xl bg-indigo-50/70 border border-indigo-200 text-xs space-y-3 shadow-xs">
             <div className="flex items-center justify-between">
-              <span className="font-bold text-purple-400 flex items-center">
-                <Sparkles className="w-4 h-4 mr-1.5" /> Gemini AI Verification Report
+              <span className="font-extrabold text-indigo-900 flex items-center">
+                <Sparkles className="w-4 h-4 mr-1.5 text-indigo-600" /> Gemini AI Verification Report
               </span>
-              <span className="px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 font-bold border border-emerald-500/30">
+              <span className="px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-800 font-extrabold border border-emerald-200">
                 Confidence: {latestAnalysis.confidence_score}%
               </span>
             </div>
             
-            <p className="text-slate-300 leading-relaxed">{latestAnalysis.notes}</p>
-            <div className="p-2 rounded bg-slate-950 text-slate-400 font-mono text-[11px]">
+            <p className="text-slate-700 leading-relaxed font-medium">{latestAnalysis.notes}</p>
+            <div className="p-2 rounded bg-white text-slate-700 font-mono text-[11px] border border-slate-200">
               {latestAnalysis.extracted_text}
             </div>
 
-            <div className="flex items-center space-x-4 pt-1">
-              <span className="text-emerald-400 flex items-center">
-                <ShieldCheck className="w-4 h-4 mr-1" /> Trust Score +{latestAnalysis.trust_delta}
+            <div className="flex items-center space-x-4 pt-1 font-bold">
+              <span className="text-emerald-700 flex items-center">
+                <ShieldCheck className="w-4 h-4 mr-1 text-emerald-600" /> Trust Score +{latestAnalysis.trust_delta}
               </span>
-              <span className="text-cyan-400 flex items-center">
-                <CheckCircle className="w-4 h-4 mr-1" /> Official Watermark Valid
+              <span className="text-sky-700 flex items-center">
+                <CheckCircle className="w-4 h-4 mr-1 text-sky-600" /> Official Watermark Valid
               </span>
             </div>
           </div>
@@ -169,25 +169,25 @@ export const DocumentUploader: React.FC = () => {
       </GlassCard>
 
       {/* Verified Document Records */}
-      <GlassCard>
-        <h3 className="text-sm font-bold text-white mb-4 flex items-center">
-          <FileCheck className="w-4 h-4 text-emerald-400 mr-2" /> Verified Fleet & Driver Records ({documents.length})
+      <GlassCard className="bg-white border-slate-200 shadow-sm">
+        <h3 className="text-sm font-extrabold text-slate-900 mb-4 flex items-center">
+          <FileCheck className="w-4 h-4 text-emerald-600 mr-2" /> Verified Fleet & Driver Records ({documents.length})
         </h3>
         <div className="space-y-3">
           {documents.map(doc => (
-            <div key={doc.id} className="p-3 rounded-xl bg-slate-950/60 border border-slate-800 flex items-center justify-between">
+            <div key={doc.id} className="p-3 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-between">
               <div className="flex items-center space-x-3">
-                <div className="p-2 rounded-lg bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
-                  <ShieldCheck className="w-4 h-4" />
+                <div className="p-2 rounded-lg bg-emerald-50 text-emerald-700 border border-emerald-200 shadow-2xs">
+                  <ShieldCheck className="w-4 h-4 text-emerald-600" />
                 </div>
                 <div>
-                  <h4 className="text-xs font-bold text-white uppercase">{doc.document_type}</h4>
-                  <p className="text-[11px] text-slate-400">Uploaded {new Date(doc.uploaded_at).toLocaleDateString()}</p>
+                  <h4 className="text-xs font-black text-slate-900 uppercase">{doc.document_type}</h4>
+                  <p className="text-[11px] text-slate-500 font-medium">Uploaded {new Date(doc.uploaded_at).toLocaleDateString()}</p>
                 </div>
               </div>
               <div className="text-right">
-                <span className="text-xs font-bold text-emerald-400">✅ {doc.confidence_score}% Verified</span>
-                <p className="text-[10px] text-slate-500">Exp: {doc.expiry_date || 'N/A'}</p>
+                <span className="text-xs font-black text-emerald-700">✅ {doc.confidence_score}% Verified</span>
+                <p className="text-[10px] text-slate-500 font-medium">Exp: {doc.expiry_date || 'N/A'}</p>
               </div>
             </div>
           ))}

@@ -20,26 +20,26 @@ export const StatCard: React.FC<StatCardProps> = ({
   color = 'emerald'
 }) => {
   const colorMap = {
-    emerald: 'text-emerald-400 bg-emerald-500/10 border-emerald-500/30',
-    cyan: 'text-cyan-400 bg-cyan-500/10 border-cyan-500/30',
-    purple: 'text-purple-400 bg-purple-500/10 border-purple-500/30',
-    amber: 'text-amber-400 bg-amber-500/10 border-amber-500/30',
+    emerald: 'text-emerald-700 bg-emerald-50 border-emerald-200 shadow-xs',
+    cyan: 'text-sky-700 bg-sky-50 border-sky-200 shadow-xs',
+    purple: 'text-indigo-700 bg-indigo-50 border-indigo-200 shadow-xs',
+    amber: 'text-amber-700 bg-amber-50 border-amber-200 shadow-xs',
   };
 
   return (
-    <GlassCard hoverEffect className="flex flex-col justify-between">
+    <GlassCard hoverEffect className="flex flex-col justify-between shadow-xs">
       <div className="flex items-center justify-between">
-        <span className="text-xs font-semibold uppercase tracking-wider text-slate-400">{title}</span>
+        <span className="text-xs font-bold uppercase tracking-wider text-slate-500">{title}</span>
         <div className={`p-2.5 rounded-xl border ${colorMap[color]}`}>
           <Icon className="w-5 h-5" />
         </div>
       </div>
       
       <div className="mt-4 flex items-baseline justify-between">
-        <span className="text-2xl lg:text-3xl font-extrabold text-white tracking-tight">{value}</span>
+        <span className="text-2xl lg:text-3xl font-black text-slate-900 tracking-tight">{value}</span>
         {change && (
-          <span className={`text-xs font-semibold px-2 py-0.5 rounded-full ${
-            isPositive ? 'text-emerald-400 bg-emerald-500/10' : 'text-rose-400 bg-rose-500/10'
+          <span className={`text-xs font-extrabold px-2 py-0.5 rounded-full border ${
+            isPositive ? 'text-emerald-700 bg-emerald-50 border-emerald-200' : 'text-rose-700 bg-rose-50 border-rose-200'
           }`}>
             {isPositive ? '↑' : '↓'} {change}
           </span>
@@ -48,3 +48,4 @@ export const StatCard: React.FC<StatCardProps> = ({
     </GlassCard>
   );
 };
+

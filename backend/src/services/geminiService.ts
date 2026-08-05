@@ -4,7 +4,16 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const apiKey = process.env.GEMINI_API_KEY;
-const genAI = apiKey && apiKey !== 'your_gemini_api_key_here' ? new GoogleGenerativeAI(apiKey) : null;
+const genAI = apiKey && apiKey !== 'your_gemini_api_key_here' && apiKey.trim().length > 10 ? new GoogleGenerativeAI(apiKey) : null;
+
+async function withTimeout<T>(promise: Promise<T>, timeoutMs = 4000): Promise<T> {
+  return Promise.race([
+    promise,
+    new Promise<T>((_, reject) =>
+      setTimeout(() => reject(new Error('Gemini API request timed out')), timeoutMs)
+    )
+  ]);
+}
 
 export interface VerificationResult {
   is_authentic: boolean;
@@ -53,12 +62,12 @@ Return a valid JSON object strictly matching this format without markdown format
       let result;
       if (base64Image) {
         const cleanBase64 = base64Image.replace(/^data:image\/\w+;base64,/, '');
-        result = await model.generateContent([
+        result = await withTimeout(model.generateContent([
           promptText,
           { inlineData: { data: cleanBase64, mimeType: 'image/jpeg' } }
-        ]);
+        ]));
       } else {
-        result = await model.generateContent(promptText);
+        result = await withTimeout(model.generateContent(promptText));
       }
 
       const text = result.response.text().replace(/```json|```/g, '').trim();
@@ -111,7 +120,7 @@ Return a valid JSON array of objects without markdown formatting:
   }
 ]`;
 
-      const response = await model.generateContent(prompt);
+      const response = await withTimeout(model.generateContent(prompt));
       const text = response.response.text().replace(/```json|```/g, '').trim();
       const rawMatches = JSON.parse(text);
 
@@ -191,7 +200,7 @@ Return a valid JSON array of 4 prediction items matching this schema without mar
   }
 ]`;
 
-      const response = await model.generateContent(prompt);
+      const response = await withTimeout(model.generateContent(prompt));
       const text = response.response.text().replace(/```json|```/g, '').trim();
       return JSON.parse(text);
     } catch (err) {

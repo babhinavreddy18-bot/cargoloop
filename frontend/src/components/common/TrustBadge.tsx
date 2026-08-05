@@ -25,22 +25,22 @@ export const TrustBadge: React.FC<TrustBadgeProps> = ({
   return (
     <div className="flex flex-wrap items-center gap-1.5">
       {driverVerified && (
-        <span className={`inline-flex items-center font-medium rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 ${sizeClasses[size]}`}>
-          <ShieldCheck className="w-3.5 h-3.5" />
+        <span className={`inline-flex items-center font-extrabold rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 shadow-xs ${sizeClasses[size]}`}>
+          <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
           <span>Verified Driver</span>
         </span>
       )}
 
       {truckVerified && (
-        <span className={`inline-flex items-center font-medium rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/30 ${sizeClasses[size]}`}>
-          <Truck className="w-3.5 h-3.5" />
+        <span className={`inline-flex items-center font-extrabold rounded-full bg-sky-50 text-sky-700 border border-sky-200 shadow-xs ${sizeClasses[size]}`}>
+          <Truck className="w-3.5 h-3.5 text-sky-600" />
           <span>Verified Truck ({confidence}%)</span>
         </span>
       )}
 
       {score && (
-        <span className={`inline-flex items-center font-semibold rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/30 ${sizeClasses[size]}`}>
-          <Award className="w-3.5 h-3.5" />
+        <span className={`inline-flex items-center font-extrabold rounded-full bg-amber-50 text-amber-700 border border-amber-200 shadow-xs ${sizeClasses[size]}`}>
+          <Award className="w-3.5 h-3.5 text-amber-600" />
           <span>Trust Score: {score}/100</span>
         </span>
       )}

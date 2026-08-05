@@ -19,15 +19,15 @@ export const DriverDashboard: React.FC = () => {
   return (
     <div className="space-y-6">
       {/* Header Banner */}
-      <GlassCard glow className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <GlassCard glow className="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-white border-slate-200 shadow-md">
         <div>
           <div className="flex items-center space-x-2">
-            <span className="px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 font-bold text-xs border border-emerald-500/30">
+            <span className="px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-800 font-extrabold text-xs border border-emerald-200">
               Driver Portal
             </span>
-            <h1 className="text-2xl font-black text-white">Welcome back, {currentUser.name}!</h1>
+            <h1 className="text-2xl font-black text-slate-900">Welcome back, {currentUser.name}!</h1>
           </div>
-          <p className="text-xs text-slate-400 mt-1">
+          <p className="text-xs text-slate-500 mt-1 font-medium">
             Gemini AI is actively matching your empty return trips to high-margin nearby cargo loads.
           </p>
         </div>
@@ -35,7 +35,7 @@ export const DriverDashboard: React.FC = () => {
         <div className="flex items-center space-x-3">
           <button
             onClick={() => setIsRegisterOpen(true)}
-            className="px-4 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-extrabold text-xs flex items-center space-x-1.5 shadow-lg shadow-emerald-500/20 transition-all"
+            className="px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs flex items-center space-x-1.5 shadow-md shadow-emerald-600/20 transition-all"
           >
             <Plus className="w-4 h-4" />
             <span>Register New Truck</span>
@@ -56,7 +56,7 @@ export const DriverDashboard: React.FC = () => {
         <StatCard
           title="Driver Trust Score"
           value={`${currentUser.trust_score} / 100`}
-          change="✅ Gemini AI Verified"
+          change="Verified Driver"
           isPositive={true}
           icon={ShieldCheck}
           color="purple"
@@ -72,16 +72,16 @@ export const DriverDashboard: React.FC = () => {
       </div>
 
       {/* Navigation Tabs */}
-      <div className="flex items-center space-x-2 border-b border-slate-800 pb-3">
+      <div className="flex items-center space-x-2 border-b border-slate-200 pb-3">
         <button
           onClick={() => setActiveTab('matches')}
           className={`px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center space-x-2 ${
             activeTab === 'matches'
-              ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/40'
-              : 'text-slate-400 hover:text-white'
+              ? 'bg-emerald-50 text-emerald-800 border border-emerald-200 shadow-xs'
+              : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
           }`}
         >
-          <Sparkles className="w-4 h-4" />
+          <Sparkles className="w-4 h-4 text-emerald-600" />
           <span>AI Return Load Matches</span>
         </button>
 
@@ -89,11 +89,11 @@ export const DriverDashboard: React.FC = () => {
           onClick={() => setActiveTab('documents')}
           className={`px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center space-x-2 ${
             activeTab === 'documents'
-              ? 'bg-purple-500/20 text-purple-400 border border-purple-500/40'
-              : 'text-slate-400 hover:text-white'
+              ? 'bg-indigo-50 text-indigo-800 border border-indigo-200 shadow-xs'
+              : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
           }`}
         >
-          <FileText className="w-4 h-4" />
+          <FileText className="w-4 h-4 text-indigo-600" />
           <span>AI Document Verification</span>
         </button>
 
@@ -101,11 +101,11 @@ export const DriverDashboard: React.FC = () => {
           onClick={() => setActiveTab('map')}
           className={`px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center space-x-2 ${
             activeTab === 'map'
-              ? 'bg-cyan-500/20 text-cyan-400 border border-cyan-500/40'
-              : 'text-slate-400 hover:text-white'
+              ? 'bg-sky-50 text-sky-800 border border-sky-200 shadow-xs'
+              : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
           }`}
         >
-          <MapPin className="w-4 h-4" />
+          <MapPin className="w-4 h-4 text-sky-600" />
           <span>Live Freight Map</span>
         </button>
       </div>

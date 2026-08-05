@@ -29,31 +29,31 @@ export const AdminDashboard: React.FC = () => {
   return (
     <div className="space-y-6">
       {/* Header Banner */}
-      <GlassCard glow className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <GlassCard glow className="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-white border-slate-200 shadow-md">
         <div>
           <div className="flex items-center space-x-2">
-            <span className="px-2.5 py-0.5 rounded-full bg-rose-500/10 text-rose-400 font-bold text-xs border border-rose-500/30">
+            <span className="px-2.5 py-0.5 rounded-full bg-rose-50 text-rose-800 font-extrabold text-xs border border-rose-200">
               CargoLoop Governance Command
             </span>
-            <h1 className="text-2xl font-black text-white">Platform Admin Control Center</h1>
+            <h1 className="text-2xl font-black text-slate-900">Platform Admin Control Center</h1>
           </div>
-          <p className="text-xs text-slate-400 mt-1">
+          <p className="text-xs text-slate-500 mt-1 font-medium">
             Comprehensive platform oversight: users, verified trucks, posted shipments, bookings, and AI performance telemetry.
           </p>
         </div>
       </GlassCard>
 
       {/* Admin Nav Tabs */}
-      <div className="flex items-center space-x-2 border-b border-slate-800 pb-3 overflow-x-auto">
+      <div className="flex items-center space-x-2 border-b border-slate-200 pb-3 overflow-x-auto">
         <button
           onClick={() => setActiveTab('analytics')}
           className={`px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center space-x-2 whitespace-nowrap ${
             activeTab === 'analytics'
-              ? 'bg-rose-500/20 text-rose-300 border border-rose-500/40'
-              : 'text-slate-400 hover:text-white'
+              ? 'bg-rose-50 text-rose-800 border border-rose-200 shadow-xs'
+              : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
           }`}
         >
-          <Sparkles className="w-4 h-4" />
+          <Sparkles className="w-4 h-4 text-rose-600" />
           <span>AI Analytics & Overview</span>
         </button>
 
@@ -61,11 +61,11 @@ export const AdminDashboard: React.FC = () => {
           onClick={() => setActiveTab('users')}
           className={`px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center space-x-2 whitespace-nowrap ${
             activeTab === 'users'
-              ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/40'
-              : 'text-slate-400 hover:text-white'
+              ? 'bg-sky-50 text-sky-800 border border-sky-200 shadow-xs'
+              : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
           }`}
         >
-          <Users className="w-4 h-4" />
+          <Users className="w-4 h-4 text-sky-600" />
           <span>User Accounts ({mockUsers.length})</span>
         </button>
 
@@ -73,11 +73,11 @@ export const AdminDashboard: React.FC = () => {
           onClick={() => setActiveTab('trucks')}
           className={`px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center space-x-2 whitespace-nowrap ${
             activeTab === 'trucks'
-              ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40'
-              : 'text-slate-400 hover:text-white'
+              ? 'bg-emerald-50 text-emerald-800 border border-emerald-200 shadow-xs'
+              : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
           }`}
         >
-          <Truck className="w-4 h-4" />
+          <Truck className="w-4 h-4 text-emerald-600" />
           <span>Fleet Trucks ({trucks.length})</span>
         </button>
 
@@ -85,11 +85,11 @@ export const AdminDashboard: React.FC = () => {
           onClick={() => setActiveTab('shipments')}
           className={`px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center space-x-2 whitespace-nowrap ${
             activeTab === 'shipments'
-              ? 'bg-amber-500/20 text-amber-300 border border-amber-500/40'
-              : 'text-slate-400 hover:text-white'
+              ? 'bg-amber-50 text-amber-800 border border-amber-200 shadow-xs'
+              : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
           }`}
         >
-          <Package className="w-4 h-4" />
+          <Package className="w-4 h-4 text-amber-600" />
           <span>Posted Cargo ({shipments.length})</span>
         </button>
 
@@ -97,11 +97,11 @@ export const AdminDashboard: React.FC = () => {
           onClick={() => setActiveTab('bookings')}
           className={`px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center space-x-2 whitespace-nowrap ${
             activeTab === 'bookings'
-              ? 'bg-purple-500/20 text-purple-300 border border-purple-500/40'
-              : 'text-slate-400 hover:text-white'
+              ? 'bg-indigo-50 text-indigo-800 border border-indigo-200 shadow-xs'
+              : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
           }`}
         >
-          <Calendar className="w-4 h-4" />
+          <Calendar className="w-4 h-4 text-indigo-600" />
           <span>Return Load Bookings ({bookings.length})</span>
         </button>
       </div>
@@ -116,19 +116,19 @@ export const AdminDashboard: React.FC = () => {
       )}
 
       {activeTab === 'users' && (
-        <GlassCard glow>
+        <GlassCard glow className="bg-white border-slate-200 shadow-sm">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
-            <h3 className="text-base font-bold text-white flex items-center">
-              <Users className="w-4 h-4 text-cyan-400 mr-2" /> Registered User Accounts
+            <h3 className="text-base font-extrabold text-slate-900 flex items-center">
+              <Users className="w-4 h-4 text-sky-600 mr-2" /> Registered User Accounts
             </h3>
             <div className="relative">
-              <Search className="w-4 h-4 text-slate-500 absolute left-3 top-2.5" />
+              <Search className="w-4 h-4 text-slate-400 absolute left-3 top-2.5" />
               <input
                 type="text"
                 placeholder="Search users..."
                 value={searchTerm}
                 onChange={e => setSearchTerm(e.target.value)}
-                className="bg-slate-950 border border-slate-800 rounded-xl pl-9 pr-4 py-1.5 text-xs text-white focus:outline-none focus:border-cyan-500"
+                className="bg-slate-50 border border-slate-200 rounded-xl pl-9 pr-4 py-1.5 text-xs text-slate-900 focus:outline-none focus:border-sky-500 focus:bg-white"
               />
             </div>
           </div>
@@ -136,7 +136,7 @@ export const AdminDashboard: React.FC = () => {
           <div className="overflow-x-auto">
             <table className="w-full text-left text-xs">
               <thead>
-                <tr className="border-b border-slate-800 text-slate-400 uppercase tracking-wider font-semibold">
+                <tr className="border-b border-slate-200 text-slate-500 uppercase tracking-wider font-extrabold">
                   <th className="py-3 px-4">User Name</th>
                   <th className="py-3 px-4">Email</th>
                   <th className="py-3 px-4">Role</th>
@@ -144,20 +144,20 @@ export const AdminDashboard: React.FC = () => {
                   <th className="py-3 px-4">Status</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-800/60 text-slate-300">
+              <tbody className="divide-y divide-slate-100 text-slate-700 font-medium">
                 {filteredUsers.map(u => (
-                  <tr key={u.id} className="hover:bg-slate-900/40">
-                    <td className="py-3 px-4 font-bold text-white">{u.name}</td>
-                    <td className="py-3 px-4 text-slate-400">{u.email}</td>
+                  <tr key={u.id} className="hover:bg-slate-50">
+                    <td className="py-3 px-4 font-bold text-slate-900">{u.name}</td>
+                    <td className="py-3 px-4 text-slate-500">{u.email}</td>
                     <td className="py-3 px-4">
-                      <span className="uppercase font-extrabold text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300">
+                      <span className="uppercase font-extrabold text-[10px] px-2 py-0.5 rounded bg-slate-100 text-slate-700 border border-slate-200">
                         {u.role.replace('_', ' ')}
                       </span>
                     </td>
-                    <td className="py-3 px-4 font-bold text-emerald-400">{u.trust_score}/100</td>
+                    <td className="py-3 px-4 font-bold text-emerald-600">{u.trust_score}/100</td>
                     <td className="py-3 px-4">
-                      <span className="inline-flex items-center text-[11px] font-bold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/30">
-                        <CheckCircle2 className="w-3 h-3 mr-1" /> Active & Verified
+                      <span className="inline-flex items-center text-[11px] font-extrabold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
+                        <CheckCircle2 className="w-3 h-3 mr-1 text-emerald-600" /> Active & Verified
                       </span>
                     </td>
                   </tr>
@@ -169,16 +169,16 @@ export const AdminDashboard: React.FC = () => {
       )}
 
       {activeTab === 'trucks' && (
-        <GlassCard glow>
+        <GlassCard glow className="bg-white border-slate-200 shadow-sm">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-base font-bold text-white flex items-center">
-              <Truck className="w-4 h-4 text-emerald-400 mr-2" /> Registered Fleet Trucks ({trucks.length})
+            <h3 className="text-base font-extrabold text-slate-900 flex items-center">
+              <Truck className="w-4 h-4 text-emerald-600 mr-2" /> Registered Fleet Trucks ({trucks.length})
             </h3>
           </div>
           <div className="overflow-x-auto">
             <table className="w-full text-left text-xs">
               <thead>
-                <tr className="border-b border-slate-800 text-slate-400 uppercase tracking-wider font-semibold">
+                <tr className="border-b border-slate-200 text-slate-500 uppercase tracking-wider font-extrabold">
                   <th className="py-3 px-4">Truck Number</th>
                   <th className="py-3 px-4">Type</th>
                   <th className="py-3 px-4">Capacity</th>
@@ -187,16 +187,16 @@ export const AdminDashboard: React.FC = () => {
                   <th className="py-3 px-4">Status</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-800/60 text-slate-300">
+              <tbody className="divide-y divide-slate-100 text-slate-700 font-medium">
                 {trucks.map(t => (
-                  <tr key={t.id} className="hover:bg-slate-900/40">
-                    <td className="py-3 px-4 font-bold text-emerald-400">{t.truck_number}</td>
+                  <tr key={t.id} className="hover:bg-slate-50">
+                    <td className="py-3 px-4 font-bold text-emerald-700">{t.truck_number}</td>
                     <td className="py-3 px-4">{t.truck_type}</td>
                     <td className="py-3 px-4 font-semibold">{t.capacity_tons} Tons</td>
                     <td className="py-3 px-4">{t.current_city}</td>
-                    <td className="py-3 px-4 text-cyan-400 font-medium">{t.dest_city}</td>
+                    <td className="py-3 px-4 text-sky-700 font-bold">{t.dest_city}</td>
                     <td className="py-3 px-4">
-                      <span className="capitalize font-bold text-[11px] text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/30">
+                      <span className="capitalize font-bold text-[11px] text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
                         {t.status.replace('_', ' ')}
                       </span>
                     </td>
@@ -209,16 +209,16 @@ export const AdminDashboard: React.FC = () => {
       )}
 
       {activeTab === 'shipments' && (
-        <GlassCard glow>
+        <GlassCard glow className="bg-white border-slate-200 shadow-sm">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-base font-bold text-white flex items-center">
-              <Package className="w-4 h-4 text-amber-400 mr-2" /> Posted Cargo Shipments ({shipments.length})
+            <h3 className="text-base font-extrabold text-slate-900 flex items-center">
+              <Package className="w-4 h-4 text-amber-600 mr-2" /> Posted Cargo Shipments ({shipments.length})
             </h3>
           </div>
           <div className="overflow-x-auto">
             <table className="w-full text-left text-xs">
               <thead>
-                <tr className="border-b border-slate-800 text-slate-400 uppercase tracking-wider font-semibold">
+                <tr className="border-b border-slate-200 text-slate-500 uppercase tracking-wider font-extrabold">
                   <th className="py-3 px-4">Material</th>
                   <th className="py-3 px-4">Weight</th>
                   <th className="py-3 px-4">Pickup City</th>
@@ -227,16 +227,16 @@ export const AdminDashboard: React.FC = () => {
                   <th className="py-3 px-4">Status</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-800/60 text-slate-300">
+              <tbody className="divide-y divide-slate-100 text-slate-700 font-medium">
                 {shipments.map(s => (
-                  <tr key={s.id} className="hover:bg-slate-900/40">
-                    <td className="py-3 px-4 font-bold text-white">{s.material}</td>
+                  <tr key={s.id} className="hover:bg-slate-50">
+                    <td className="py-3 px-4 font-bold text-slate-900">{s.material}</td>
                     <td className="py-3 px-4">{s.weight_tons} Tons</td>
                     <td className="py-3 px-4">{s.pickup_city}</td>
-                    <td className="py-3 px-4 text-emerald-400">{s.drop_city}</td>
-                    <td className="py-3 px-4 font-extrabold text-amber-400">₹{s.offered_price.toLocaleString()}</td>
+                    <td className="py-3 px-4 text-emerald-700 font-semibold">{s.drop_city}</td>
+                    <td className="py-3 px-4 font-extrabold text-amber-700">₹{s.offered_price.toLocaleString()}</td>
                     <td className="py-3 px-4">
-                      <span className="capitalize font-bold text-[11px] text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded-full border border-amber-500/30">
+                      <span className="capitalize font-bold text-[11px] text-amber-800 bg-amber-50 px-2 py-0.5 rounded-full border border-amber-200">
                         {s.status}
                       </span>
                     </td>
@@ -249,19 +249,19 @@ export const AdminDashboard: React.FC = () => {
       )}
 
       {activeTab === 'bookings' && (
-        <GlassCard glow>
+        <GlassCard glow className="bg-white border-slate-200 shadow-sm">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-base font-bold text-white flex items-center">
-              <Calendar className="w-4 h-4 text-purple-400 mr-2" /> Return Load Bookings & Advance Reservations ({bookings.length})
+            <h3 className="text-base font-extrabold text-slate-900 flex items-center">
+              <Calendar className="w-4 h-4 text-indigo-600 mr-2" /> Return Load Bookings & Advance Reservations ({bookings.length})
             </h3>
           </div>
           {bookings.length === 0 ? (
-            <p className="text-xs text-slate-400 py-6 text-center">No active bookings yet. Accept return loads or reserve future trucks to populate!</p>
+            <p className="text-xs text-slate-500 py-6 text-center font-medium">No active bookings yet. Accept return loads or reserve future trucks to populate!</p>
           ) : (
             <div className="overflow-x-auto">
               <table className="w-full text-left text-xs">
                 <thead>
-                  <tr className="border-b border-slate-800 text-slate-400 uppercase tracking-wider font-semibold">
+                  <tr className="border-b border-slate-200 text-slate-500 uppercase tracking-wider font-extrabold">
                     <th className="py-3 px-4">Booking Ref</th>
                     <th className="py-3 px-4">Type</th>
                     <th className="py-3 px-4">Agreed Freight</th>
@@ -269,28 +269,28 @@ export const AdminDashboard: React.FC = () => {
                     <th className="py-3 px-4">Date</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-800/60 text-slate-300">
+                <tbody className="divide-y divide-slate-100 text-slate-700 font-medium">
                   {bookings.map(b => (
-                    <tr key={b.id} className="hover:bg-slate-900/40">
-                      <td className="py-3 px-4 font-bold text-purple-400 font-mono">{b.id}</td>
+                    <tr key={b.id} className="hover:bg-slate-50">
+                      <td className="py-3 px-4 font-bold text-indigo-700 font-mono">{b.id}</td>
                       <td className="py-3 px-4">
                         {b.is_advance_reservation ? (
-                          <span className="px-2 py-0.5 rounded bg-purple-500/20 text-purple-300 font-extrabold text-[10px]">
+                          <span className="px-2 py-0.5 rounded bg-indigo-50 text-indigo-800 border border-indigo-200 font-extrabold text-[10px]">
                             ⭐ Advance Reservation
                           </span>
                         ) : (
-                          <span className="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-extrabold text-[10px]">
+                          <span className="px-2 py-0.5 rounded bg-emerald-50 text-emerald-800 border border-emerald-200 font-extrabold text-[10px]">
                             🚚 Instant Return Load
                           </span>
                         )}
                       </td>
-                      <td className="py-3 px-4 font-extrabold text-emerald-400">₹{b.agreed_freight_cost.toLocaleString()}</td>
+                      <td className="py-3 px-4 font-extrabold text-emerald-700">₹{b.agreed_freight_cost.toLocaleString()}</td>
                       <td className="py-3 px-4">
-                        <span className="capitalize font-bold text-[11px] text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/30">
+                        <span className="capitalize font-bold text-[11px] text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
                           {b.status}
                         </span>
                       </td>
-                      <td className="py-3 px-4 text-slate-400">{new Date(b.created_at).toLocaleDateString()}</td>
+                      <td className="py-3 px-4 text-slate-500">{new Date(b.created_at).toLocaleDateString()}</td>
                     </tr>
                   ))}
                 </tbody>

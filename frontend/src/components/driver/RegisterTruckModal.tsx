@@ -64,23 +64,23 @@ export const RegisterTruckModal: React.FC<RegisterTruckModalProps> = ({ isOpen, 
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label className="block text-xs font-semibold text-slate-400 mb-1">Truck Registration Number</label>
+            <label className="block text-xs font-bold text-slate-700 mb-1">Truck Registration Number</label>
             <input
               type="text"
               placeholder="e.g. MH-12-PQ-9821"
               value={truckNumber}
               onChange={e => setTruckNumber(e.target.value)}
-              className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-sm text-white focus:border-emerald-500 focus:outline-none"
+              className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-sm text-slate-900 focus:border-emerald-500 focus:bg-white focus:outline-none transition-colors"
               required
             />
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-slate-400 mb-1">Truck Body Type</label>
+            <label className="block text-xs font-bold text-slate-700 mb-1">Truck Body Type</label>
             <select
               value={truckType}
               onChange={e => setTruckType(e.target.value)}
-              className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-sm text-white focus:border-emerald-500 focus:outline-none"
+              className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-sm text-slate-900 focus:border-emerald-500 focus:bg-white focus:outline-none transition-colors font-medium"
             >
               <option value="32ft Multi-Axle Container">32ft Multi-Axle Container</option>
               <option value="24ft Open Body Heavy">24ft Open Body Heavy</option>
@@ -93,57 +93,57 @@ export const RegisterTruckModal: React.FC<RegisterTruckModalProps> = ({ isOpen, 
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div>
-            <label className="block text-xs font-semibold text-slate-400 mb-1">Capacity (Tons)</label>
+            <label className="block text-xs font-bold text-slate-700 mb-1">Capacity (Tons)</label>
             <input
               type="number"
               value={capacityTons}
               onChange={e => setCapacityTons(Number(e.target.value))}
-              className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-sm text-white focus:border-emerald-500 focus:outline-none"
+              className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-sm text-slate-900 focus:border-emerald-500 focus:bg-white focus:outline-none transition-colors"
               required
             />
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-slate-400 mb-1">Current GPS City</label>
+            <label className="block text-xs font-bold text-slate-700 mb-1">Current GPS City</label>
             <input
               type="text"
               placeholder="e.g. Mumbai"
               value={currentCity}
               onChange={e => setCurrentCity(e.target.value)}
-              className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-sm text-white focus:border-emerald-500 focus:outline-none"
+              className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-sm text-slate-900 focus:border-emerald-500 focus:bg-white focus:outline-none transition-colors"
               required
             />
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-slate-400 mb-1">Target Destination</label>
+            <label className="block text-xs font-bold text-slate-700 mb-1">Target Destination</label>
             <input
               type="text"
               placeholder="e.g. Pune"
               value={destCity}
               onChange={e => setDestCity(e.target.value)}
-              className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-sm text-white focus:border-emerald-500 focus:outline-none"
+              className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-sm text-slate-900 focus:border-emerald-500 focus:bg-white focus:outline-none transition-colors"
               required
             />
           </div>
         </div>
 
-        <div className="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center space-x-3 text-xs text-emerald-300">
-          <ShieldCheck className="w-5 h-5 flex-shrink-0" />
+        <div className="p-3 rounded-xl bg-emerald-50 border border-emerald-200 flex items-center space-x-3 text-xs text-emerald-800 font-medium shadow-xs">
+          <ShieldCheck className="w-5 h-5 text-emerald-600 flex-shrink-0" />
           <span>Gemini AI will automatically verify your vehicle specs against RTO registration records.</span>
         </div>
 
-        <div className="flex justify-end space-x-3 pt-3 border-t border-slate-800">
+        <div className="flex justify-end space-x-3 pt-3 border-t border-slate-200">
           <button
             type="button"
             onClick={onClose}
-            className="px-4 py-2 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800 text-sm font-medium"
+            className="px-4 py-2 rounded-xl text-slate-600 hover:text-slate-900 hover:bg-slate-100 text-sm font-bold"
           >
             Cancel
           </button>
           <button
             type="submit"
-            className="px-5 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-sm shadow-lg shadow-emerald-500/20 transition-all"
+            className="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-sm shadow-md shadow-emerald-600/20 transition-all"
           >
             Register & Activate Return Load Matching
           </button>

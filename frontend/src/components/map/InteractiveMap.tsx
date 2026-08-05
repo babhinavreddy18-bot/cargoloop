@@ -35,8 +35,8 @@ export const InteractiveMap: React.FC<InteractiveMapProps> = ({
 
       L.control.zoom({ position: 'bottomright' }).addTo(map);
 
-      // Dark map tile layer (CartoDB Dark Matter)
-      L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+      // Light map tile layer (CartoDB Voyager / Light)
+      L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
         attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
         subdomains: 'abcd',
         maxZoom: 19
@@ -58,7 +58,7 @@ export const InteractiveMap: React.FC<InteractiveMapProps> = ({
     const createTruckIcon = (color: string) => L.divIcon({
       className: 'custom-map-icon',
       html: `
-        <div style="background-color: ${color}; width: 34px; height: 34px; border-radius: 50%; border: 2px solid white; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 15px ${color}">
+        <div style="background-color: ${color}; width: 34px; height: 34px; border-radius: 50%; border: 2px solid white; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px ${color}66">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <rect x="1" y="3" width="15" height="13"></rect>
             <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
@@ -74,7 +74,7 @@ export const InteractiveMap: React.FC<InteractiveMapProps> = ({
     const createPinIcon = (color: string) => L.divIcon({
       className: 'custom-pin-icon',
       html: `
-        <div style="background-color: ${color}; width: 30px; height: 30px; border-radius: 8px; border: 2px solid white; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 12px ${color}">
+        <div style="background-color: ${color}; width: 30px; height: 30px; border-radius: 8px; border: 2px solid white; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px ${color}66">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5">
             <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
             <circle cx="12" cy="10" r="3"></circle>
@@ -88,15 +88,15 @@ export const InteractiveMap: React.FC<InteractiveMapProps> = ({
     // 1. Add Trucks
     trucks.forEach(t => {
       const marker = L.marker([t.current_lat, t.current_lng], {
-        icon: createTruckIcon(t.status === 'available' ? '#10B981' : '#06B6D4')
+        icon: createTruckIcon(t.status === 'available' ? '#059669' : '#0284C7')
       }).addTo(map);
 
       marker.bindPopup(`
         <div style="padding: 4px;">
-          <div style="font-weight: bold; font-size: 14px; color: #10B981;">${t.truck_number}</div>
-          <div style="font-size: 12px; color: #cbd5e1; margin-top: 2px;">${t.truck_type} (${t.capacity_tons} Tons)</div>
-          <div style="font-size: 12px; color: #94a3b8; margin-top: 4px;">Current: <b>${t.current_city}</b> → Dest: <b>${t.dest_city}</b></div>
-          <div style="font-size: 11px; color: #34d399; margin-top: 6px;">Trust Score: <b>${t.verification_confidence}%</b> Verified</div>
+          <div style="font-weight: 800; font-size: 14px; color: #059669;">${t.truck_number}</div>
+          <div style="font-size: 12px; color: #334155; margin-top: 2px;">${t.truck_type} (${t.capacity_tons} Tons)</div>
+          <div style="font-size: 12px; color: #64748B; margin-top: 4px;">Current: <b>${t.current_city}</b> → Dest: <b>${t.dest_city}</b></div>
+          <div style="font-size: 11px; color: #059669; margin-top: 6px; font-weight: 700;">Trust Score: <b>${t.verification_confidence}%</b> Verified</div>
         </div>
       `);
 
@@ -106,10 +106,10 @@ export const InteractiveMap: React.FC<InteractiveMapProps> = ({
           [t.current_lat, t.current_lng],
           [t.dest_lat, t.dest_lng]
         ], {
-          color: '#10B981',
+          color: '#059669',
           weight: 2,
           dashArray: '5, 10',
-          opacity: 0.6
+          opacity: 0.7
         }).addTo(map);
       }
     });
@@ -117,14 +117,14 @@ export const InteractiveMap: React.FC<InteractiveMapProps> = ({
     // 2. Add Shipments
     shipments.forEach(s => {
       const pMarker = L.marker([s.pickup_lat, s.pickup_lng], {
-        icon: createPinIcon('#F59E0B')
+        icon: createPinIcon('#D97706')
       }).addTo(map);
 
       pMarker.bindPopup(`
         <div style="padding: 4px;">
-          <div style="font-weight: bold; font-size: 14px; color: #F59E0B;">📦 Return Load: ₹${s.offered_price.toLocaleString()}</div>
-          <div style="font-size: 12px; color: #f8fafc; margin-top: 2px;">${s.material} (${s.weight_tons} Tons)</div>
-          <div style="font-size: 12px; color: #94a3b8; margin-top: 4px;">${s.pickup_city} → ${s.drop_city}</div>
+          <div style="font-weight: 800; font-size: 14px; color: #D97706;">📦 Return Load: ₹${s.offered_price.toLocaleString()}</div>
+          <div style="font-size: 12px; color: #0F172A; margin-top: 2px;">${s.material} (${s.weight_tons} Tons)</div>
+          <div style="font-size: 12px; color: #64748B; margin-top: 4px;">${s.pickup_city} → ${s.drop_city}</div>
         </div>
       `);
 
@@ -133,7 +133,7 @@ export const InteractiveMap: React.FC<InteractiveMapProps> = ({
         [s.pickup_lat, s.pickup_lng],
         [s.drop_lat, s.drop_lng]
       ], {
-        color: '#F59E0B',
+        color: '#D97706',
         weight: 3,
         opacity: 0.8
       }).addTo(map);
@@ -142,15 +142,15 @@ export const InteractiveMap: React.FC<InteractiveMapProps> = ({
     // 3. Add Predictions
     predictions.forEach(p => {
       const predMarker = L.marker([p.dest_lat, p.dest_lng], {
-        icon: createTruckIcon('#8B5CF6')
+        icon: createTruckIcon('#4F46E5')
       }).addTo(map);
 
       predMarker.bindPopup(`
         <div style="padding: 6px;">
-          <div style="font-weight: bold; font-size: 13px; color: #c084fc;">⚡ Future Truck Arriving in ${p.time_horizon}</div>
-          <div style="font-size: 12px; color: #f8fafc;">${p.truck_number} (${p.truck_type})</div>
-          <div style="font-size: 11px; color: #94a3b8; margin-top: 4px;">Match Prob: <b>${p.match_probability}%</b> | Rem: ${p.remaining_km}km</div>
-          <div style="font-size: 11px; color: #38bdf8; margin-top: 2px;">Est Freight: ₹${p.expected_freight_cost.toLocaleString()}</div>
+          <div style="font-weight: 800; font-size: 13px; color: #4F46E5;">⚡ Future Truck Arriving in ${p.time_horizon}</div>
+          <div style="font-size: 12px; color: #0F172A;">${p.truck_number} (${p.truck_type})</div>
+          <div style="font-size: 11px; color: #64748B; margin-top: 4px;">Match Prob: <b>${p.match_probability}%</b> | Rem: ${p.remaining_km}km</div>
+          <div style="font-size: 11px; color: #0284C7; margin-top: 2px; font-weight: 700;">Est Freight: ₹${p.expected_freight_cost.toLocaleString()}</div>
         </div>
       `);
     });
@@ -158,21 +158,21 @@ export const InteractiveMap: React.FC<InteractiveMapProps> = ({
   }, [trucks, shipments, predictions]);
 
   return (
-    <div className="relative w-full rounded-2xl overflow-hidden border border-slate-800 shadow-2xl">
+    <div className="relative w-full rounded-2xl overflow-hidden border border-slate-200 shadow-lg">
       <div ref={mapRef} style={{ height, width: '100%' }} className="z-10" />
       
-      <div className="absolute top-4 left-4 z-20 bg-slate-900/90 backdrop-blur-md px-3.5 py-2 rounded-xl border border-slate-800 flex items-center space-x-4 text-xs font-semibold">
+      <div className="absolute top-4 left-4 z-20 bg-white/90 backdrop-blur-md px-3.5 py-2 rounded-xl border border-slate-200 flex items-center space-x-4 text-xs font-bold shadow-md">
         <div className="flex items-center space-x-1.5">
-          <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping"></span>
-          <span className="text-slate-300">Active Trucks</span>
+          <span className="w-2.5 h-2.5 rounded-full bg-emerald-600 animate-ping"></span>
+          <span className="text-slate-800">Active Trucks</span>
         </div>
         <div className="flex items-center space-x-1.5">
-          <span className="w-2.5 h-2.5 rounded-full bg-amber-500"></span>
-          <span className="text-slate-300">Return Shipments</span>
+          <span className="w-2.5 h-2.5 rounded-full bg-amber-600"></span>
+          <span className="text-slate-800">Return Shipments</span>
         </div>
         <div className="flex items-center space-x-1.5">
-          <span className="w-2.5 h-2.5 rounded-full bg-purple-500"></span>
-          <span className="text-slate-300">Future Trucks</span>
+          <span className="w-2.5 h-2.5 rounded-full bg-indigo-600"></span>
+          <span className="text-slate-800">Future Trucks</span>
         </div>
       </div>
     </div>
